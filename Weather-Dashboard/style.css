@@ -1,0 +1,533 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --text: #ffffff;
+    --muted: #c5d4ed;
+    --glass: rgba(255, 255, 255, 0.10);
+    --border: rgba(255, 255, 255, 0.16);
+    --accent: #7dd3fc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #07152f;
+    transition: background 0.8s ease;
+}
+
+.weather-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(45, 125, 255, 0.45), transparent 35%),
+        radial-gradient(circle at 85% 75%, rgba(123, 77, 255, 0.35), transparent 35%),
+        linear-gradient(135deg, #07152f, #102c58, #171b46);
+    transition: background 1s ease;
+}
+
+.weather-background.sunny {
+    background:
+        radial-gradient(circle at 75% 20%, rgba(255, 190, 70, 0.5), transparent 35%),
+        linear-gradient(135deg, #164e83, #287db5, #624c9c);
+}
+
+.weather-background.rainy {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(68, 110, 180, 0.4), transparent 40%),
+        linear-gradient(135deg, #091525, #263b58, #192747);
+}
+
+.weather-background.cloudy {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(180, 190, 220, 0.25), transparent 40%),
+        linear-gradient(135deg, #263c59, #405b79, #252f50);
+}
+
+.weather-background.night {
+    background:
+        radial-gradient(circle at 70% 15%, rgba(99, 102, 241, 0.3), transparent 40%),
+        linear-gradient(135deg, #080d27, #171c49, #291c50);
+}
+
+.app-container {
+    width: min(1100px, 92%);
+    margin: auto;
+    padding: 30px 0 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 75px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.live-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 15px;
+    border: 1px solid var(--border);
+    background: var(--glass);
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #4ade80;
+    animation: pulse 1.5s infinite;
+}
+
+.search-section {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    animation: fadeUp 0.8s ease;
+}
+
+.eyebrow,
+.small-label {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.search-section h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-top: 18px;
+    font-size: 15px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px auto 0;
+    padding: 8px 9px 8px 20px;
+    max-width: 560px;
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.search-icon {
+    font-size: 27px;
+    color: #b8d8ff;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.search-box input::placeholder {
+    color: #c2d1e8;
+}
+
+.search-box button {
+    border: none;
+    padding: 14px 23px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    color: white;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.search-box button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(56, 189, 248, 0.35);
+}
+
+.search-box button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+.error-message {
+    color: #fecaca;
+    font-size: 14px;
+    margin-top: 13px;
+    min-height: 20px;
+}
+
+.weather-content {
+    animation: fadeUp 0.7s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.location-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.location-row h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.location-row p:last-child {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.location-icon {
+    font-size: 27px;
+}
+
+.main-weather-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 250px;
+    padding: 35px 55px;
+    border-radius: 28px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14);
+}
+
+.temperature-area > p:first-child {
+    color: var(--muted);
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+.temperature {
+    font-size: clamp(75px, 12vw, 115px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -5px;
+}
+
+.temperature sup {
+    font-size: 35px;
+    vertical-align: top;
+    letter-spacing: 0;
+}
+
+#feelsLike {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.weather-icon-area img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.18));
+    animation: float 4s ease-in-out infinite;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 20px 0 45px;
+}
+
+.detail-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 21px 18px;
+    border-radius: 19px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.detail-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.17);
+}
+
+.detail-icon {
+    font-size: 29px;
+}
+
+.detail-card p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.detail-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.forecast-section {
+    margin-bottom: 45px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+}
+
+.section-heading > span {
+    font-size: 27px;
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+}
+
+.forecast-card {
+    text-align: center;
+    padding: 22px 10px;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+    transition: transform 0.3s, background 0.3s;
+    animation: fadeUp 0.6s ease both;
+}
+
+.forecast-card:hover {
+    transform: translateY(-7px);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.forecast-day {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.forecast-card img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    margin: 8px 0;
+}
+
+.forecast-condition {
+    color: var(--muted);
+    text-transform: capitalize;
+    font-size: 11px;
+    min-height: 28px;
+}
+
+.forecast-temp {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.forecast-min {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.loading {
+    text-align: center;
+    padding: 35px;
+    color: var(--muted);
+}
+
+.spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #7dd3fc;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    animation: spin 0.8s linear infinite;
+}
+
+footer {
+    text-align: center;
+    color: #a9bad5;
+    font-size: 12px;
+    padding: 25px 0 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 800px) {
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .main-weather-card {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 520px) {
+    .app-container {
+        width: 91%;
+        padding-top: 22px;
+    }
+
+    .header {
+        margin-bottom: 55px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .live-status {
+        font-size: 9px;
+        padding: 8px 10px;
+    }
+
+    .search-section h1 {
+        font-size: 39px;
+        letter-spacing: -1.5px;
+    }
+
+    .search-box {
+        padding: 7px 7px 7px 13px;
+        gap: 7px;
+    }
+
+    .search-box input {
+        font-size: 13px;
+    }
+
+    .search-box button {
+        padding: 13px 12px;
+        font-size: 12px;
+    }
+
+    .main-weather-card {
+        padding: 24px 18px;
+        min-height: 185px;
+    }
+
+    .temperature {
+        font-size: 68px;
+    }
+
+    .temperature sup {
+        font-size: 25px;
+    }
+
+    .weather-icon-area img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .location-row h2 {
+        font-size: 23px;
+    }
+
+    .details-grid {
+        gap: 10px;
+    }
+
+    .detail-card {
+        padding: 16px 11px;
+        gap: 9px;
+    }
+
+    .detail-icon {
+        font-size: 23px;
+    }
+
+    .detail-card h3 {
+        font-size: 16px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .forecast-card:last-child {
+        grid-column: span 2;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

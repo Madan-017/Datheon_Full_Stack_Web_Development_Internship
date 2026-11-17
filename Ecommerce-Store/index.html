@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShopSphere - Discover amazing products at amazing prices.">
+    <title>ShopSphere | Discover. Shop. Enjoy.</title>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>✨ Special deals are waiting for you! Free shipping on orders over $100</p>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">S</span>
+                <span>Shop<span class="logo-highlight">Sphere</span></span>
+            </a>
+
+            <div class="nav-search">
+                <span class="search-icon">⌕</span>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products..."
+                    autocomplete="off"
+                >
+                <button id="searchButton" type="button">Search</button>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+                    ☾
+                </button>
+
+                <button class="cart-button" id="cartButton" aria-label="Open shopping cart">
+                    <span>🛒</span>
+                    <span class="cart-text">Cart</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+
+                <span class="hero-tag">✦ YOUR NEXT FAVORITE FIND</span>
+
+                <h1>
+                    Discover a world of
+                    <span>amazing shopping!</span>
+                </h1>
+
+                <p>
+                    Explore exciting products, discover great deals,
+                    and find everything you love in one place.
+                </p>
+
+                <a href="#products" class="hero-button">
+                    Explore Products <span>→</span>
+                </a>
+
+                <div class="hero-stats">
+                    <div>
+                        <strong>20+</strong>
+                        <small>Products</small>
+                    </div>
+                    <div>
+                        <strong>4.5★</strong>
+                        <small>Great Ratings</small>
+                    </div>
+                    <div>
+                        <strong>100%</strong>
+                        <small>Shopping Fun</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-circle"></div>
+
+                <div class="hero-card hero-card-main">
+                    <div class="hero-emoji">🛍️</div>
+                    <h3>Shopping made fun!</h3>
+                    <p>Find something you love.</p>
+                </div>
+
+                <div class="floating-item floating-one">✨</div>
+                <div class="floating-item floating-two">🎁</div>
+                <div class="floating-item floating-three">💜</div>
+
+                <div class="hero-discount">
+                    <strong>WOW!</strong>
+                    <span>Great Deals</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits -->
+        <section class="benefits">
+            <div class="benefit-item">
+                <span>🚚</span>
+                <div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick delivery service</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <span>🔒</span>
+                <div>
+                    <h3>Secure Shopping</h3>
+                    <p>Safe shopping experience</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <span>💝</span>
+                <div>
+                    <h3>Great Products</h3>
+                    <p>Find your favorites</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <span>🎧</span>
+                <div>
+                    <h3>Customer Support</h3>
+                    <p>We're here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section" id="products">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-tag">✦ EXPLORE OUR COLLECTION</span>
+                    <h2>Find Your <span>Favorites</span></h2>
+                    <p>Handpicked products just waiting for you.</p>
+                </div>
+
+                <div class="product-result" id="productResult">
+                    Loading products...
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="category-bar" id="categoryBar">
+                <button class="category-btn active" data-category="all">
+                    ✨ All Products
+                </button>
+
+                <button class="category-btn" data-category="electronics">
+                    💻 Electronics
+                </button>
+
+                <button class="category-btn" data-category="jewelery">
+                    💎 Jewelry
+                </button>
+
+                <button class="category-btn" data-category="men's clothing">
+                    👔 Men's Fashion
+                </button>
+
+                <button class="category-btn" data-category="women's clothing">
+                    👗 Women's Fashion
+                </button>
+            </div>
+
+            <!-- Sorting -->
+            <div class="products-toolbar">
+                <p>Showing amazing products for you</p>
+
+                <select id="sortSelect" aria-label="Sort products">
+                    <option value="default">Sort: Recommended</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading-container" id="loading">
+                <div class="loader"></div>
+                <h3>Finding amazing products...</h3>
+                <p>Just a moment!</p>
+            </div>
+
+            <!-- Error -->
+            <div class="error-message" id="errorMessage" role="alert">
+                <span>⚠️</span>
+                <p>Unable to load products. Please try again.</p>
+                <button id="retryButton" type="button">Try Again</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="productGrid"></div>
+
+            <!-- Empty Search -->
+            <div class="empty-state" id="emptyState">
+                <span>🔍</span>
+                <h3>No products found!</h3>
+                <p>Try another search or category.</p>
+                <button id="clearFiltersButton" type="button">
+                    Clear Filters
+                </button>
+            </div>
+
+        </section>
+
+        <!-- Promotional Banner -->
+        <section class="promo-banner">
+            <div>
+                <span class="promo-label">✦ A LITTLE SOMETHING SPECIAL</span>
+                <h2>Good finds. Great vibes. Happy shopping!</h2>
+                <p>Explore our collection and discover your next favorite item.</p>
+                <a href="#products">Shop Now →</a>
+            </div>
+
+            <div class="promo-illustration">
+                <span>🎁</span>
+                <span>✨</span>
+                <span>🛍️</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Page Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Shopping Cart Drawer -->
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+
+        <div class="cart-header">
+            <div>
+                <span class="section-tag">✦ YOUR SHOPPING BAG</span>
+                <h2>My Cart <span id="drawerCartCount">(0)</span></h2>
+            </div>
+
+            <button class="close-btn" id="closeCart" aria-label="Close cart">
+                &times;
+            </button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <span>🛒</span>
+                <h3>Your cart is empty!</h3>
+                <p>Let's find something amazing for you.</p>
+                <button id="continueShopping" type="button">
+                    Start Shopping
+                </button>
+            </div>
+        </div>
+
+        <div class="cart-summary" id="cartSummary">
+
+            <div class="coupon-note">
+                🎉 Great choices! Your order is almost ready.
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <strong id="subtotal">$0.00</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Tax (8%)</span>
+                <strong id="tax">$0.00</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <strong id="shipping">$0.00</strong>
+            </div>
+
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <strong id="total">$0.00</strong>
+            </div>
+
+            <button class="checkout-btn" id="checkoutButton" type="button">
+                Proceed to Checkout →
+            </button>
+
+            <p class="secure-note">🔒 Secure simulated checkout</p>
+
+        </div>
+
+    </aside>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+
+        <div class="modal-content">
+
+            <button class="close-btn modal-close" id="closeCheckout" aria-label="Close checkout">
+                &times;
+            </button>
+
+            <div id="checkoutFormContent">
+
+                <div class="modal-icon">💳</div>
+
+                <span class="section-tag">✦ ALMOST THERE</span>
+                <h2 id="checkoutTitle">Complete Your Order</h2>
+                <p>Enter your details for this simulated checkout.</p>
+
+                <form id="checkoutForm">
+
+                    <label for="customerName">Full Name</label>
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                    <label for="customerEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="customerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <label for="customerAddress">Delivery Address</label>
+                    <textarea
+                        id="customerAddress"
+                        placeholder="Enter your delivery address"
+                        rows="3"
+                        required
+                    ></textarea>
+
+                    <div class="checkout-total">
+                        Order Total: <strong id="checkoutTotal">$0.00</strong>
+                    </div>
+
+                    <button type="submit" class="checkout-btn">
+                        Place My Order 🎉
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Success -->
+            <div class="success-content" id="successContent">
+
+                <div class="success-animation">🎉</div>
+
+                <h2>Order Confirmed!</h2>
+
+                <p>
+                    Thank you for shopping with ShopSphere.
+                    Your simulated order has been placed successfully!
+                </p>
+
+                <div class="order-number">
+                    Order ID: <strong id="orderId"></strong>
+                </div>
+
+                <button class="checkout-btn" id="finishOrder" type="button">
+                    Continue Shopping 💜
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon">S</span>
+                    <span>Shop<span class="logo-highlight">Sphere</span></span>
+                </a>
+
+                <p>
+                    Discover amazing products, shop with joy,
+                    and make every purchase special.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="#products">All Products</a>
+                <a href="#products">Electronics</a>
+                <a href="#products">Jewelry</a>
+                <a href="#products">Fashion</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="#products">Shop Now</a>
+                <a href="#products">Our Collection</a>
+                <a href="#">Back to Top</a>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Stay Connected</h3>
+                <p>Made with 💜 for happy shoppers.</p>
+                <span>🛍️ Happy Shopping!</span>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ShopSphere. Created for educational and internship purposes.</p>
+            <p>Designed with 💜 by Madan B K</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
